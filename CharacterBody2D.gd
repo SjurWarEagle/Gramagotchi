@@ -69,7 +69,7 @@ func show_current_current_goal():
 	elif (current_goal==GremlinGoal.EAT2):
 		show_action_display("🧀")
 	elif (current_goal==GremlinGoal.POND):
-		show_action_display("🎣")
+		show_action_display("🐟")
 	elif (current_goal==GremlinGoal.SLEEP):
 		show_action_display("🛏️")
 	elif (current_goal==GremlinGoal.COFFEE):
