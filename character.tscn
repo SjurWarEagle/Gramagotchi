@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbm67k3eswqrs"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_77cgd"]
+[ext_resource type="Texture2D" uid="uid://co0pctx8yd8qg" path="res://gremlin_200.png" id="2_6t3ac"]
+
+[sub_resource type="Gradient" id="Gradient_f1hgk"]
+offsets = PackedFloat32Array(0, 0.537037, 0.542593, 0.588889, 0.598148, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lumnc"]
+gradient = SubResource("Gradient_f1hgk")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ve8u4"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(124, 504)
+scale = Vector2(0.5, 0.5)
+slide_on_ceiling = false
+safe_margin = 15.0
+script = ExtResource("1_77cgd")
+
+[node name="Bubble1" type="Sprite2D" parent="."]
+position = Vector2(-4, -64)
+scale = Vector2(0.3125, 0.3125)
+texture = SubResource("GradientTexture2D_lumnc")
+
+[node name="Bubble2" type="Sprite2D" parent="."]
+position = Vector2(-18, -90)
+scale = Vector2(0.625, 0.625)
+texture = SubResource("GradientTexture2D_lumnc")
+
+[node name="Bubble3" type="Sprite2D" parent="."]
+position = Vector2(18, -130)
+scale = Vector2(1.21875, 1.21875)
+texture = SubResource("GradientTexture2D_lumnc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = -10.0
+offset_top = -148.0
+offset_right = 68.0
+offset_bottom = -118.0
+theme_override_font_sizes/normal_font_size = 44
+text = "🍌"
+scroll_active = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ve8u4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+path_postprocessing = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 6)
+texture = ExtResource("2_6t3ac")
+
+[node name="OnBreakTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="timeout" from="OnBreakTimer" to="." method="_on_on_break_timer_timeout"]
