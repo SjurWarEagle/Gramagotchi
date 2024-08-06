@@ -14,12 +14,12 @@ enum GremlinGoal{
 }
 
 
-var movement_speed: float = 300.0
+var movement_speed: float = 100.0
 var movement_target_position: Vector2
 var current_goal: GremlinGoal
 var is_on_break: bool=false
 
-@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D")
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout

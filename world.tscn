@@ -15384,6 +15384,8 @@ layer_3/name = "decoration"
 layer_3/tile_data = PackedInt32Array(458785, 851968, 26, 458783, 655360, 33, 458786, 917504, 26, 393250, 917504, 25, 589853, 196608, 11, 655387, 393216, 11, 720923, 393216, 12, 655389, 0, 24, 393240, 262144, 38, 458776, 262144, 39, 393241, 327680, 38, 458777, 327680, 39, 196636, 327689, 37, 262172, 327689, 38, 131106, 196617, 19, 131107, 720905, 16, 65571, 720905, 15, 30, 917513, 20)
 
 [node name="DoorLivingroom" type="Area2D" parent="TileMap"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("10_kaggq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DoorLivingroom"]
@@ -15391,6 +15393,8 @@ position = Vector2(312, 383.5)
 shape = SubResource("RectangleShape2D_5q41g")
 
 [node name="DoorKitchen" type="Area2D" parent="TileMap"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("11_wrh26")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DoorKitchen"]
@@ -15398,6 +15402,8 @@ position = Vector2(984, 342)
 shape = SubResource("RectangleShape2D_5q41g")
 
 [node name="DoorHouse" type="Area2D" parent="TileMap"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("12_5myqa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DoorHouse"]
@@ -15405,6 +15411,8 @@ position = Vector2(598, 629)
 shape = SubResource("RectangleShape2D_5q41g")
 
 [node name="DoorStorage" type="Area2D" parent="TileMap"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("15_m8dec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DoorStorage"]
@@ -15412,6 +15420,8 @@ position = Vector2(1416, 337)
 shape = SubResource("RectangleShape2D_5q41g")
 
 [node name="DoorFreezer" type="Area2D" parent="TileMap"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("16_gdgvf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DoorFreezer"]
@@ -15424,6 +15434,19 @@ position = Vector2(-3, -3)
 navigation_polygon = SubResource("NavigationPolygon_ut0o0")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("17_fsg2h")]
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("17_fsg2h")]
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("17_fsg2h")]
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("17_fsg2h")]
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("17_fsg2h")]
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("17_fsg2h")]
+
+[node name="CharacterBody2D7" parent="." instance=ExtResource("17_fsg2h")]
+collision_layer = 0
 
 [node name="position_sleep" type="Marker2D" parent="." groups=["positions"]]
 position = Vector2(155, 493)
