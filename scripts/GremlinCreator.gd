@@ -1,5 +1,5 @@
 extends Control
-var gremlin_scene = preload("res://gremlin.tscn")
+var gremlin_scene = preload("res://scenes/gremlin.tscn")
 @onready 	var world = get_parent()
 
 # Called when the node enters the scene tree for the first time.

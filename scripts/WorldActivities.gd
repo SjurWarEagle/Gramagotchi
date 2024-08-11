@@ -1,13 +1,9 @@
-extends Node
+extends Control
 
-func enter_state():
-	pass
-
-func exit_state():
-	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	DataHolder.
 	pass # Replace with function body.
 
 

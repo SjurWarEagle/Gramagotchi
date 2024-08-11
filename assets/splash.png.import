@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co0pctx8yd8qg"
-path="res://.godot/imported/gremlin_200.png-851215c3cc015cdc6118c12b1ada6443.ctex"
+uid="uid://wxokcu204iim"
+path="res://.godot/imported/splash.png-8aa957744d9f4b764dd4680b37c88571.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gremlin_200.png"
-dest_files=["res://.godot/imported/gremlin_200.png-851215c3cc015cdc6118c12b1ada6443.ctex"]
+source_file="res://assets/splash.png"
+dest_files=["res://.godot/imported/splash.png-8aa957744d9f4b764dd4680b37c88571.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbm67k3eswqrs"]
 
-[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_77cgd"]
-[ext_resource type="Texture2D" uid="uid://co0pctx8yd8qg" path="res://gremlin_200.png" id="2_6t3ac"]
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_77cgd"]
+[ext_resource type="Texture2D" uid="uid://co0pctx8yd8qg" path="res://assets/gremlin_200.png" id="2_6t3ac"]
 
 [sub_resource type="Gradient" id="Gradient_f1hgk"]
 offsets = PackedFloat32Array(0, 0.537037, 0.542593, 0.588889, 0.598148, 1)
