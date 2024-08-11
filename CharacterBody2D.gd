@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name GremlinCharacter
 
 enum GremlinGoal{
 	NONE,
@@ -142,3 +143,7 @@ func show_action_display(text:String):
 	get_node("RichTextLabel").text=text
 	get_node("RichTextLabel").visible=true
 	
+func set_texture(given_texture:ImageTexture):
+	#texture = given_texture
+	get_node("Sprite2D").texture=given_texture
+	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://thyaiq0mhppw"]
+[gd_scene load_steps=34 format=3 uid="uid://thyaiq0mhppw"]
 
 [ext_resource type="Texture2D" uid="uid://sjg6dmhujk02" path="res://assets/16x16_outdoor.png" id="1_hlifw"]
 [ext_resource type="Texture2D" uid="uid://b8qgk1yadg4ow" path="res://assets/Room_Builder_Walls_48x48.png" id="2_b0ew5"]
@@ -16,7 +16,8 @@
 [ext_resource type="Script" path="res://DoorHouse.gd" id="12_5myqa"]
 [ext_resource type="Script" path="res://DoorStorage.gd" id="15_m8dec"]
 [ext_resource type="Script" path="res://DoorFreezer.gd" id="16_gdgvf"]
-[ext_resource type="PackedScene" uid="uid://dbm67k3eswqrs" path="res://character.tscn" id="17_fsg2h"]
+[ext_resource type="PackedScene" uid="uid://dbm67k3eswqrs" path="res://gremlin.tscn" id="17_fsg2h"]
+[ext_resource type="Script" path="res://GremlinCreator.gd" id="17_iyr32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wnocq"]
 texture = ExtResource("1_hlifw")
@@ -15433,20 +15434,15 @@ visible = false
 position = Vector2(-3, -3)
 navigation_polygon = SubResource("NavigationPolygon_ut0o0")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("17_fsg2h")]
+[node name="GremlinCreator" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_iyr32")
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("17_fsg2h")]
-
-[node name="CharacterBody2D3" parent="." instance=ExtResource("17_fsg2h")]
-
-[node name="CharacterBody2D4" parent="." instance=ExtResource("17_fsg2h")]
-
-[node name="CharacterBody2D5" parent="." instance=ExtResource("17_fsg2h")]
-
-[node name="CharacterBody2D6" parent="." instance=ExtResource("17_fsg2h")]
-
-[node name="CharacterBody2D7" parent="." instance=ExtResource("17_fsg2h")]
-collision_layer = 0
+[node name="Gremlin" parent="." instance=ExtResource("17_fsg2h")]
+visible = false
 
 [node name="position_sleep" type="Marker2D" parent="." groups=["positions"]]
 position = Vector2(155, 493)
