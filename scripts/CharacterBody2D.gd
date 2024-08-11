@@ -1,23 +1,11 @@
 extends CharacterBody2D
 class_name GremlinCharacter
 
-enum GremlinGoal{
-	NONE,
-	POND,
-	EAT,
-	EAT2,
-	COFFEE,
-	SLEEP,
-	TV,
-	TOILETT,
-	POSTAL,
-	CLEANING,
-}
 
 
 var movement_speed: float = 100.0
 var movement_target_position: Vector2
-var current_goal: GremlinGoal
+var current_goal: Types.GremlinGoal
 var is_on_break: bool=false
 
 @onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D")
@@ -65,23 +53,23 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func show_current_current_goal():
-	if (current_goal==GremlinGoal.EAT):
+	if (current_goal == Types.GremlinGoal.EAT):
 		show_action_display("🍌")
-	elif (current_goal==GremlinGoal.EAT2):
+	elif (current_goal == Types.GremlinGoal.EAT2):
 		show_action_display("🧀")
-	elif (current_goal==GremlinGoal.POND):
+	elif (current_goal == Types.GremlinGoal.POND):
 		show_action_display("🐟")
-	elif (current_goal==GremlinGoal.SLEEP):
+	elif (current_goal == Types.GremlinGoal.SLEEP):
 		show_action_display("🛏️")
-	elif (current_goal==GremlinGoal.COFFEE):
+	elif (current_goal == Types.GremlinGoal.COFFEE):
 		show_action_display("☕")
-	elif (current_goal==GremlinGoal.TV):
+	elif (current_goal == Types.GremlinGoal.TV):
 		show_action_display("📺")
-	elif (current_goal==GremlinGoal.POSTAL):
+	elif (current_goal == Types.GremlinGoal.POSTAL):
 		show_action_display("💌")
-	elif (current_goal==GremlinGoal.TOILETT):
+	elif (current_goal  == Types.GremlinGoal.TOILETT):
 		show_action_display("🧻")
-	elif (current_goal==GremlinGoal.CLEANING):
+	elif (current_goal == Types.GremlinGoal.CLEANING):
 		show_action_display("🪣")
 	#hide_action_display()
 
@@ -89,31 +77,31 @@ func _decide_new_target():
 	var rnd = RandomNumberGenerator.new().randi_range(0,8)
 	if(rnd==0):
 		movement_target_position=get_node("../position_sleep").position
-		current_goal=GremlinGoal.SLEEP
+		current_goal=Types.GremlinGoal.SLEEP
 	elif(rnd==1):
 		movement_target_position=get_node("../position_tv").position
-		current_goal=GremlinGoal.TV
+		current_goal=Types.GremlinGoal.TV
 	elif(rnd==2):
 		movement_target_position=get_node("../position_eat").position
-		current_goal=GremlinGoal.EAT
+		current_goal=Types.GremlinGoal.EAT
 	elif(rnd==3):
 		movement_target_position=get_node("../position_coffee").position
-		current_goal=GremlinGoal.COFFEE
+		current_goal=Types.GremlinGoal.COFFEE
 	elif(rnd==4):
 		movement_target_position=get_node("../position_toilett").position
-		current_goal=GremlinGoal.TOILETT
+		current_goal=Types.GremlinGoal.TOILETT
 	elif(rnd==5):
 		movement_target_position=get_node("../position_postal").position
-		current_goal=GremlinGoal.POSTAL
+		current_goal=Types.GremlinGoal.POSTAL
 	elif(rnd==6):
 		movement_target_position=get_node("../position_pond").position
-		current_goal=GremlinGoal.POND
+		current_goal=Types.GremlinGoal.POND
 	elif(rnd==7):
 		movement_target_position=get_node("../position_eat2").position
-		current_goal=GremlinGoal.EAT2
+		current_goal=Types.GremlinGoal.EAT2
 	elif(rnd==8):
 		movement_target_position=get_node("../position_storage").position
-		current_goal=GremlinGoal.CLEANING
+		current_goal=Types.GremlinGoal.CLEANING
 	else:
 		print(rnd)
 	set_movement_target(movement_target_position)

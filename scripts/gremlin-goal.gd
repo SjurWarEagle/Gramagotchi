@@ -1,0 +1,12 @@
+enum GremlinGoal{
+	NONE,
+	POND,
+	EAT,
+	EAT2,
+	COFFEE,
+	SLEEP,
+	TV,
+	TOILETT,
+	POSTAL,
+	CLEANING,
+}

@@ -18,7 +18,7 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-StatusEngine="*res://status_engine.gd"
+Types="*res://scripts/gremlin-goal.gd"
 DataHolder="*res://scripts/data-holder.gd"
 
 [display]
