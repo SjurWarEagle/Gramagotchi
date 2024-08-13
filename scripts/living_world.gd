@@ -1,40 +1,45 @@
 extends Control
 class_name LivingWorld
 
-var takenWorldActivities:Dictionary = {
-	Types.GremlinGoal.WORLD_PLANTING:false,
-}
-
-var waitingWorldActivities:Dictionary = {
-	Types.GremlinGoal.WORLD_PLANTING:false,
-}
+var allWorldActivities:Array = []
+var takenWorldActivities:Array = []
+var waitingWorldActivities:Array = []
 
 
 func inform_about_task_done(activity:Types.GremlinGoal):
 	if activity==Types.GremlinGoal.WORLD_PLANTING:
-			waitingWorldActivities[activity]=true
+			waitingWorldActivities.append(activity)
+			takenWorldActivities.erase(activity)
 	pass
 
 func inform_about_task_started(activity:Types.GremlinGoal):
 	if activity==Types.GremlinGoal.WORLD_PLANTING:
-			takenWorldActivities[activity]=true
+			takenWorldActivities.append(activity)
+			waitingWorldActivities.erase(activity)
+#			waitingWorldActivities[activity] = false
+#			takenWorldActivities[activity] = true
 	pass
 
-func inform_about_task_taken(activity:Types.GremlinGoal):
+func inform_about_task_taken(_activity:Types.GremlinGoal):
 	pass
 
 func get_possible_world_actions() -> Array:
 	var possible:Array=[]
-	possible.append(Types.GremlinGoal.WORLD_PLANTING)
+	
+	for activity in allWorldActivities:
+		if waitingWorldActivities.has(activity):
+			possible.append(activity)
 	return possible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	allWorldActivities.append(Types.GremlinGoal.WORLD_PLANTING)
+	waitingWorldActivities.append_array(allWorldActivities)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func get_activity_name(value: int) -> String:
@@ -55,9 +60,9 @@ func _on_show_debug_info_timer_timeout():
 	print("+-----------------+-------+---------+")
 	print(("| %s" % left_align("Activity",15)) + " | Taken | Running |")
 	print("|-----------------|-------|---------|")
-	for key in takenWorldActivities.keys():
-		var valueTaken = takenWorldActivities[key]
-		var valueRunning = takenWorldActivities[key]
+	for key in allWorldActivities:
+		var valueTaken = takenWorldActivities.has(key)
+		var valueRunning = takenWorldActivities.has(key)
 		print(("| %s" % left_align(get_activity_name(key),15)) 
 			+ " | " + left_align(str(valueTaken),5)
 			+ " | " + left_align(str(valueRunning),5)

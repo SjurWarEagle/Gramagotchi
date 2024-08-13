@@ -1,5 +1,6 @@
+extends Node
+
 enum GremlinGoal{
-	NONE,
 	POND,
 	EAT,
 	EAT2,
@@ -11,3 +12,6 @@ enum GremlinGoal{
 	CLEANING,
 	WORLD_PLANTING,
 }
+
+var cntNonWorldActivities = GremlinGoal.CLEANING
+

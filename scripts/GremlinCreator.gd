@@ -82,5 +82,5 @@ func generate_gremlin_for_nick(nick):
 		push_error("An error occurred in the HTTP request.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass

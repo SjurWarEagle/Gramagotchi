@@ -81,46 +81,44 @@ func inform_about_task_done(activity:Types.GremlinGoal):
 	pass
 
 func _decide_new_target():
-	var livingWorld:LivingWorld =  get_node("../LivingWorld")
-	var availableWorldActivities =livingWorld.get_possible_world_actions()
-	var cntAvailableWorldActivities=availableWorldActivities.size()
-	
-	var cntNonWorldActivities = 8
-	var rnd = RandomNumberGenerator.new().randi_range(0,(cntNonWorldActivities+cntAvailableWorldActivities))
 	inform_about_task_done(current_goal)
-	if(rnd==0):
+
+	var livingWorld:LivingWorld =  get_node("../LivingWorld")
+	var availableWorldActivities = livingWorld.get_possible_world_actions()
+	var cntAvailableWorldActivities = availableWorldActivities.size()
+	
+	var rnd = RandomNumberGenerator.new().randi_range(0,(Types.cntNonWorldActivities + cntAvailableWorldActivities))
+	if cntAvailableWorldActivities > 0:
+		rnd = Types.GremlinGoal.WORLD_PLANTING
+	if(rnd == Types.GremlinGoal.SLEEP):
 		movement_target_position=get_node("../position_sleep").position
-		current_goal=Types.GremlinGoal.SLEEP
-	elif(rnd==1):
+	elif(rnd == Types.GremlinGoal.TV):
 		movement_target_position=get_node("../position_tv").position
-		current_goal=Types.GremlinGoal.TV
-	elif(rnd==2):
+	elif(rnd == Types.GremlinGoal.EAT):
 		movement_target_position=get_node("../position_eat").position
-		current_goal=Types.GremlinGoal.EAT
-	elif(rnd==3):
+	elif(rnd == Types.GremlinGoal.COFFEE):
 		movement_target_position=get_node("../position_coffee").position
-		current_goal=Types.GremlinGoal.COFFEE
-	elif(rnd==4):
+	elif(rnd == Types.GremlinGoal.TOILETT):
 		movement_target_position=get_node("../position_toilett").position
-		current_goal=Types.GremlinGoal.TOILETT
-	elif(rnd==5):
+	elif(rnd == Types.GremlinGoal.POSTAL):
 		movement_target_position=get_node("../position_postal").position
-		current_goal=Types.GremlinGoal.POSTAL
-	elif(rnd==6):
+	elif(rnd == Types.GremlinGoal.POND):
 		movement_target_position=get_node("../position_pond").position
-		current_goal=Types.GremlinGoal.POND
-	elif(rnd==7):
+	elif(rnd == Types.GremlinGoal.EAT2):
 		movement_target_position=get_node("../position_eat2").position
-		current_goal=Types.GremlinGoal.EAT2
-	elif(rnd==8):
+	elif(rnd == Types.GremlinGoal.CLEANING):
 		movement_target_position=get_node("../position_storage").position
-		current_goal=Types.GremlinGoal.CLEANING
-	elif(rnd>8):
-		#movement_target_position=get_node("../position_storage").position
-		current_goal=availableWorldActivities[rnd-8-1]
-		#current_goal=Types.GremlinGoal.WORLD_PLANTING
 	else:
-		print(rnd)
+#	elif(rnd > 8):
+		if(rnd == Types.GremlinGoal.WORLD_PLANTING):
+			movement_target_position = get_node("../position_garden").position
+		#movement_target_position=get_node("../position_storage").position
+		current_goal = availableWorldActivities[rnd - Types.cntNonWorldActivities - 1]
+		livingWorld.inform_about_task_started(rnd)
+		#current_goal=Types.GremlinGoal.WORLD_PLANTING
+#	else:
+#		assert("Not handled case: " + str(rnd))
+	current_goal = rnd
 	set_movement_target(movement_target_position)
 	livingWorld.inform_about_task_taken(current_goal)
 	pass
