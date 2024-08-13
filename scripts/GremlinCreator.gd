@@ -20,7 +20,7 @@ func generate_gremlin(texture:ImageTexture, gremlin_name: String):
 	gremlin.get_child(0).visible=true
 	gremlin.set_texture(texture)
 #	(gremlin.get_child(0) as TextureRect).scale=Vector2(1,1)
-	gremlin.position=Vector2(50,50)
+	gremlin.position=Vector2(100,150)
 	
 	(gremlin as CharacterBody2D).visible=true
 	gremlin.name="Gremlin " + gremlin_name
@@ -47,7 +47,6 @@ func http_request_dna_completed(_result, _response_code, _headers, body, dna_htt
 	var error = http_request.request(url)
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
-
 
 # Called when the HTTP request is completed.
 func http_request_image_completed(_result, _response_code, _headers, body:PackedByteArray, image_http_request:HTTPRequest, gremlin_name: String):

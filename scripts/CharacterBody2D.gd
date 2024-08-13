@@ -71,10 +71,23 @@ func show_current_current_goal():
 		show_action_display("🧻")
 	elif (current_goal == Types.GremlinGoal.CLEANING):
 		show_action_display("🪣")
+	elif (current_goal == Types.GremlinGoal.WORLD_PLANTING):
+		show_action_display("🫗")
 	#hide_action_display()
 
+func inform_about_task_done(activity:Types.GremlinGoal):
+	var livingWorld:LivingWorld =  get_node("../LivingWorld")
+	livingWorld.inform_about_task_done(activity)
+	pass
+
 func _decide_new_target():
-	var rnd = RandomNumberGenerator.new().randi_range(0,8)
+	var livingWorld:LivingWorld =  get_node("../LivingWorld")
+	var availableWorldActivities =livingWorld.get_possible_world_actions()
+	var cntAvailableWorldActivities=availableWorldActivities.size()
+	
+	var cntNonWorldActivities = 8
+	var rnd = RandomNumberGenerator.new().randi_range(0,(cntNonWorldActivities+cntAvailableWorldActivities))
+	inform_about_task_done(current_goal)
 	if(rnd==0):
 		movement_target_position=get_node("../position_sleep").position
 		current_goal=Types.GremlinGoal.SLEEP
@@ -102,9 +115,14 @@ func _decide_new_target():
 	elif(rnd==8):
 		movement_target_position=get_node("../position_storage").position
 		current_goal=Types.GremlinGoal.CLEANING
+	elif(rnd>8):
+		#movement_target_position=get_node("../position_storage").position
+		current_goal=availableWorldActivities[rnd-8-1]
+		#current_goal=Types.GremlinGoal.WORLD_PLANTING
 	else:
 		print(rnd)
 	set_movement_target(movement_target_position)
+	livingWorld.inform_about_task_taken(current_goal)
 	pass
 
 func _on_navigation_agent_2d_target_reached():

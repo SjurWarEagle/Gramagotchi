@@ -9,4 +9,5 @@ enum GremlinGoal{
 	TOILETT,
 	POSTAL,
 	CLEANING,
+	WORLD_PLANTING,
 }

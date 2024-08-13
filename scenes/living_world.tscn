@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx86wvuubnh56"]
+
+[ext_resource type="Script" path="res://scripts/living_world.gd" id="1_fxdd3"]
+
+[node name="LivingWorld" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fxdd3")
+
+[node name="ShowDebugInfoTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ShowDebugInfoTimer" to="." method="_on_show_debug_info_timer_timeout"]
