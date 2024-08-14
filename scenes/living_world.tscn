@@ -12,4 +12,12 @@ script = ExtResource("1_fxdd3")
 [node name="ShowDebugInfoTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="GrowingTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="BloomTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="timeout" from="ShowDebugInfoTimer" to="." method="_on_show_debug_info_timer_timeout"]
+[connection signal="timeout" from="GrowingTimer" to="." method="change_plants_to_fruit_and_ready_harvest"]
+[connection signal="timeout" from="BloomTimer" to="." method="change_plants_to_blossom_and_start_riping"]

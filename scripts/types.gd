@@ -1,6 +1,6 @@
 extends Node
 
-enum GremlinGoal{
+enum GremlinGoal {
 	POND,
 	EAT,
 	EAT2,
@@ -11,7 +11,7 @@ enum GremlinGoal{
 	POSTAL,
 	CLEANING,
 	WORLD_PLANTING,
+	WORLD_HARVEST,
 }
 
-var cntNonWorldActivities = GremlinGoal.CLEANING
-
+var cntNonWorldActivities = GremlinGoal.CLEANING + 1
