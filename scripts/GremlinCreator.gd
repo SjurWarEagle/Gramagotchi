@@ -6,8 +6,8 @@ var gremlin_scene = preload("res://scenes/gremlin.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_gremlin_for_nick("SjurWarEagle")
-	for i in 100:
-		generate_gremlin_for_nick("Demo"+str(i))
+#	for i in 1:
+#		generate_gremlin_for_nick("Demo"+str(i))
 	pass  # Replace with function body.
 
 
