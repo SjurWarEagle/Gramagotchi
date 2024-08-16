@@ -12,7 +12,6 @@ permissions:
 
 env:
   GODOT_MAJOR_MINOR_VERSION: "4.3" # must be a string, not a number
-  GODOT_ARCHIVE: "Godot_v${GODOT_MAJOR_MINOR_VERSION}-stable"
 
   PROJECT_FOLDER: "." # the path to the godot project (must contain `project.godot` file) relative to the github root path
 
@@ -33,8 +32,8 @@ jobs:
       run: |
         echo "GODOT_VERSION=${GODOT_MAJOR_MINOR_VERSION}.${GODOT_PATCH_VERSION}" >> $GITHUB_ENV
 
-        echo "GODOT_EXECUTABLE_DOWNLOAD_URL=https://downloads.tuxfamily.org/godotengine/${GODOT_ARCHIVE}_linux.x86_64.zip" >> $GITHUB_ENV
-        echo "GODOT_TEMPLATES_DOWNLOAD_URL=https://downloads.tuxfamily.org/godotengine/${GODOT_ARCHIVE}_export_templates.tpz" >> $GITHUB_ENV
+        echo "GODOT_EXECUTABLE_DOWNLOAD_URL=https://downloads.tuxfamily.org/godotengine/4.3/Godot_4.3-stable_linux.x86_64.zip" >> $GITHUB_ENV
+        echo "GODOT_TEMPLATES_DOWNLOAD_URL=https://downloads.tuxfamily.org/godotengine/4.3/Godot_4.3-stable_export_templates.tpz" >> $GITHUB_ENV
 
     - name: Checkout
       uses: actions/checkout@v3
