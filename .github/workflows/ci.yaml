@@ -26,16 +26,31 @@ jobs:
           mkdir -v -p build/web
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
+      - name: create and compress web artifact
+        run: |
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "HTML5" ../build/web/index.html
+          tar czfv /tmp/web.tgz ../build
+      - name: Upload web page artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web artifact
+          path: /tmp/web.tgz
   build-docker:
     needs: export-web
     runs-on: ubuntu-latest
     name: Build Docker Image
     steps:
-#      - name: Upload Artifact
-#        uses: actions/upload-artifact@v1
-#        with:
-#          name: web
-#          path: build/web
+      - name: Download web page artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: /tmp/web.tgz
+      - name: compress web artifact
+        run: |
+          mkdir web
+          tar xf /tmp/web.tgz web
+          ls -al
+          ls -al web
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
