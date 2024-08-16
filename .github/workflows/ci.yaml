@@ -13,6 +13,11 @@ jobs:
     container:
       image: barichello/godot-ci:4.2.1
     steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -31,11 +36,18 @@ jobs:
         with:
           name: web
           path: build/web
-      - name: Install rsync 📚
-        run: |
-          apt-get update && apt-get install -y rsync
-      - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+      - name: Docker image build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build/web # The folder the action should deploy.
+          push: true
+          tags: wareagledocker/gramatochi:latest
+          file: docker/Dockerfile
+#      - name: Install rsync 📚
+#        run: |
+#          apt-get update && apt-get install -y rsync
+#      - name: Deploy to GitHub Pages 🚀
+#        uses: JamesIves/github-pages-deploy-action@releases/v4
+#        with:
+#          branch: gh-pages # The branch the action should deploy to.
+#          folder: build/web # The folder the action should deploy.
