@@ -20,9 +20,9 @@ RUN wget https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_expor
     && mv -v templates/* ~/.local/share/godot/export_templates/${EXPORT_TEMPLATE_PATH} \
     && rm templates.tpz
 
-#RUN ls -al /root/.local/share/godot/
-#RUN ls -al /root/.local/share/godot/export_templates/
-#RUN ls -al /root/.local/share/godot/export_templates/4.3.stable/
+RUN ls -al /root/.local/share/godot/
+RUN ls -al /root/.local/share/godot/export_templates/
+RUN ls -al /root/.local/share/godot/export_templates/4.3.stable/
 
 ADD . /project
 RUN mkdir -p /export/
