@@ -9,15 +9,10 @@ env:
 jobs:
   export-web:
     name: Web Export
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.2.1
+      image: barichello/godot-ci:4.3
     steps:
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -31,23 +26,25 @@ jobs:
           mkdir -v -p build/web
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+  build-docker:
+    needs: export-web
+    runs-on: ubuntu-latest
+    name: Build Docker Image
+    steps:
+#      - name: Upload Artifact
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: web
+#          path: build/web
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
-          name: web
-          path: build/web
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Docker image build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: wareagledocker/gramatochi:latest
+          tags: wareagledocker/grematochi:latest
           file: docker/Dockerfile
-#      - name: Install rsync 📚
-#        run: |
-#          apt-get update && apt-get install -y rsync
-#      - name: Deploy to GitHub Pages 🚀
-#        uses: JamesIves/github-pages-deploy-action@releases/v4
-#        with:
-#          branch: gh-pages # The branch the action should deploy to.
-#          folder: build/web # The folder the action should deploy.
