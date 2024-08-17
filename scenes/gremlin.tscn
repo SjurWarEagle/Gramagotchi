@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbm67k3eswqrs"]
+[gd_scene load_steps=7 format=3 uid="uid://dbm67k3eswqrs"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_77cgd"]
 [ext_resource type="Texture2D" uid="uid://co0pctx8yd8qg" path="res://assets/gremlin_200.png" id="2_6t3ac"]
+[ext_resource type="FontFile" uid="uid://dyvuh14k2ngp0" path="res://assets/fonts/NotoColorEmoji-Regular.ttf" id="2_8wkc1"]
 
 [sub_resource type="Gradient" id="Gradient_f1hgk"]
 offsets = PackedFloat32Array(0, 0.537037, 0.542593, 0.588889, 0.598148, 1)
@@ -41,10 +42,10 @@ texture = SubResource("GradientTexture2D_lumnc")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 clip_contents = false
-offset_left = -10.0
-offset_top = -148.0
-offset_right = 68.0
-offset_bottom = -118.0
+offset_top = -160.0
+offset_right = 78.0
+offset_bottom = -130.0
+theme_override_fonts/normal_font = ExtResource("2_8wkc1")
 theme_override_font_sizes/normal_font_size = 44
 text = "🍌"
 scroll_active = false
